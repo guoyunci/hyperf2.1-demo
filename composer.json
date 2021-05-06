@@ -13,9 +13,12 @@
     "license": "Apache-2.0",
     "require": {
         "php": ">=7.3",
+        "hyperf/amqp": "~2.1.0",
+        "hyperf/async-queue": "^2.1",
         "hyperf/cache": "~2.1.0",
         "hyperf/command": "~2.1.0",
         "hyperf/config": "~2.1.0",
+        "hyperf/database": "~2.1.0",
         "hyperf/db-connection": "~2.1.0",
         "hyperf/framework": "~2.1.0",
         "hyperf/guzzle": "~2.1.0",
@@ -23,9 +26,8 @@
         "hyperf/logger": "~2.1.0",
         "hyperf/memory": "~2.1.0",
         "hyperf/process": "~2.1.0",
-        "hyperf/database": "~2.1.0",
         "hyperf/redis": "~2.1.0",
-        "hyperf/amqp": "~2.1.0"
+        "symfony/var-dumper": "^5.2"
     },
     "require-dev": {
         "swoole/ide-helper": "^4.5",
@@ -51,7 +53,10 @@
     "autoload-dev": {
         "psr-4": {
             "HyperfTest\\": "./test/"
-        }
+        },
+        "files": [
+            "app/Kernel/Functions.php"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

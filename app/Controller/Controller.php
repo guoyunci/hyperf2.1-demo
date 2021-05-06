@@ -11,28 +11,31 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
-use Hyperf\Di\Annotation\Inject;
+use App\Kernel\Http\Response;
 use Hyperf\HttpServer\Contract\RequestInterface;
-use Hyperf\HttpServer\Contract\ResponseInterface;
 use Psr\Container\ContainerInterface;
 
-abstract class AbstractController
+abstract class Controller
 {
     /**
-     * @Inject
      * @var ContainerInterface
      */
     protected $container;
 
     /**
-     * @Inject
+     * @var Response
+     */
+    protected $response;
+
+    /**
      * @var RequestInterface
      */
     protected $request;
 
-    /**
-     * @Inject
-     * @var ResponseInterface
-     */
-    protected $response;
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+        $this->response = $container->get(Response::class);
+        $this->request = $container->get(RequestInterface::class);
+    }
 }

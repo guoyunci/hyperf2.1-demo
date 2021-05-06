@@ -11,7 +11,13 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
-class IndexController extends AbstractController
+use App\Job\FooJob;
+use Hyperf\HttpServer\Annotation\AutoController;
+
+/**
+ * @AutoController(prefix="index")
+ */
+class IndexController extends Controller
 {
     public function index()
     {
@@ -22,5 +28,11 @@ class IndexController extends AbstractController
             'method' => $method,
             'message' => "Hello {$user}.",
         ];
+    }
+    
+    public function job()
+    {
+        queue_push(new FooJob($id = uniqid()), 10);
+        return $this->response->success($id);
     }
 }
